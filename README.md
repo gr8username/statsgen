@@ -22,7 +22,7 @@ If you use a custom Minecraft client (such as Lunar), or have set a different Mi
 
 ## Install steps (Windows)
 1. [Install golang](https://go.dev/doc/install)
-2. Download repo as ZIP file
+2. [Download repo as ZIP file](https://github.com/gr8username/statsgen/archive/refs/heads/main.zip)
 3. **extract the files**
 4. Open `Windows Terminal`
 5. Run `cd <PATH TO EXTRACTED FILES>`.
