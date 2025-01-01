@@ -28,6 +28,7 @@ func main() {
 		}
 		runScanner(logLoc)
 	} else if runtime.GOOS == "darwin" {
+		DARWIN_DEFAULT_PATH = filepath.Join(homeDir, "Library", "Application Support", "minecraft", "logs")
 		fmt.Print("Enter your minecraft logs directory (default: " + DARWIN_DEFAULT_PATH + "): ")
 		var logLoc string
 		fmt.Scanln(&logLoc)
