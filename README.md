@@ -14,24 +14,24 @@ If you use a custom Minecraft client (such as Lunar), or have set a different Mi
 ## Install steps (Linux)
 1. Open a terminal.
 2. [Install golang](https://go.dev/doc/install).
-3. run ```git clone https://github.com/gr8username/statsgen/```
-4. run ```cd statgen```
-5. run ```go build```
-6. run ```./statsgen```
+3. run `git clone https://github.com/gr8username/statsgen/`.
+4. run `cd statgen`.
+5. run `go build`.
+6. run `./statsgen`.
 7. To view stats.txt (or the filename you selected) type ```less stats.txt``` Or you can open it with a graphical text editor.
 
 ## Install steps (Windows)
-1. [Install golang](https://go.dev/doc/install)
-2. [Download repo as ZIP file](https://github.com/gr8username/statsgen/archive/refs/heads/main.zip)
-3. **extract the files**
+1. [Install golang](https://go.dev/doc/install).
+2. [Download repo as ZIP file](https://github.com/gr8username/statsgen/archive/refs/heads/main.zip).
+3. **Extract the files**.
 4. Open `Windows Terminal`
 5. Run `cd <PATH TO EXTRACTED FILES>`.
 6. Run `go build`.
 7. When finished (when the prompt shows back up) run `.\statsgen.exe`).
 8. Follow the prompts (leave blank if defaults okay, press enter after typing response).
-9. Run `notepad stats.txt`
+9. Run `notepad stats.txt`.
 
-note, you may find the path to the extracted files by dragging a folder into the Terminal.
+Note, you may find the path to the extracted files by dragging a folder into the Terminal.
 
 
 Example stats.txt output.
