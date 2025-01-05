@@ -24,7 +24,7 @@ func main() {
 	if ri.help {
 		fmt.Println("Example command")
 		if runtime.GOOS == "windows" {
-			fmt.Println(".\\statsgen " + LOGDIR_ARG + " C:\\Users\\user\\AppData\\Roaming\\.minecraft\\logs\\ " + STATSFILE_ARG + " stats.txt")
+			fmt.Println(".\\statsgen.exe " + LOGDIR_ARG + " C:\\Users\\user\\AppData\\Roaming\\.minecraft\\logs\\ " + STATSFILE_ARG + " stats.txt")
 		} else {
 			fmt.Println("./statsgen " + LOGDIR_ARG + " /home/user/.minecraft/logs/ " + STATSFILE_ARG + " stats.txt")
 		}
