@@ -15,7 +15,7 @@ If you use a custom Minecraft client (such as Lunar), or have set a different Mi
 1. Open a terminal.
 2. [Install golang](https://go.dev/doc/install).
 3. run `git clone https://github.com/gr8username/statsgen/`.
-4. run `cd statgen`.
+4. run `cd statsgen`.
 5. run `go build`.
 6. run `./statsgen`.
 7. To view stats.txt (or the filename you selected) type ```less stats.txt``` Or you can open it with a graphical text editor.
