@@ -99,6 +99,7 @@ func (this *PlayerRelation) ToString() string {
 	returnValue += centerText("-----STATS AGAINST " + this.name + "-----", 74)
 	returnValue += fmt.Sprintf("You have killed %s %d times\n", this.name, this.killsByUser())
 	returnValue += fmt.Sprintf("%s has killed you %d times\n", this.name, this.deathsByPlayer())
+	returnValue += fmt.Sprintf("Individual K/D: %.2f\n", this.getKD())
 	returnValue += centerText("CLASS BREAKDOWN", 74)
 	returnValue += fmt.Sprintf("%-14s%-30s%-30s\n", "Class", "Killed by " + this.name, "Killed " + this.name)
 	for i := KINETIC; i <= HYDRO ; i++ {
@@ -111,6 +112,17 @@ type PlayerRelation struct {
 	killAs map[int]int  // number of times user killed player as X class
 	deathAs map[int]int  // number of times user was killed by player as X class
 	name string
+}
+
+func (this *PlayerRelation) getKD() float64 {
+	return safeDivide(float64(this.killsByUser()), float64(this.deathsByPlayer()))
+} 
+
+func safeDivide(dividend float64, divisor float64) float64 {
+	if dividend == float64(0) || divisor == float64(0) {
+		return float64(0)
+	}
+	return dividend/divisor
 }
 
 func getClassIndex(className string) int {
@@ -149,7 +161,7 @@ func runScannerOnDir(logDir string, state *ScannerState) {
 	}
 	// sortEntries(dirData)
 	if len(dirData) == 0 {
-		fmt.Println(RED + "ERROR: No logfiles available!")  // Print red error message
+		fmt.Println(RED + "ERROR: No logfiles available!" + RESET)  // Print red error message
 		return
 	}
 	for i := 0 ; i < len(dirData) ; i++ {
@@ -157,6 +169,11 @@ func runScannerOnDir(logDir string, state *ScannerState) {
 		fullPath := filepath.Join(logDir + string(os.PathSeparator), dirData[i].Name())
 		if !logF {
 			// fmt.Printf("Not logfile: %s\n", fullPath)
+			if dirData[i].IsDir() {
+				// recursion is fun to write, and absolutely nothing can ever go wrong, right?
+				newPath := filepath.Join(logDir + string(os.PathSeparator), dirData[i].Name())
+				runScannerOnDir(newPath, state)
+			}
 			continue
 		}	
 		// fmt.Printf("Found logfile: %s\n", fullPath)
