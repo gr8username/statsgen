@@ -37,37 +37,39 @@ Note, you may find the path to the extracted files by dragging a folder into the
 Example stats.txt output.
 
 ```
-Recorded Kills: 8592
-Recorded Deaths: 4016
+Recorded Kills: 9112
+Recorded Deaths: 4152
 Note, the above numbers are not necessarily the actual amount of kills and deaths on your account.
 This script can only possibly read data from logs, so if you, for example, play Minecraft on another computer, any logs of Wizards kills will be missing.
 This file is most likely thousands of lines long, it is recommended to use a text editor with search capability
 Additionally, the class section of the tables define what class you were using when you died or got a kill, it does not and cannot determine which kit the other player was using.
 
                      -----STATS AGAINST PLAYER1-----                     
-You have killed PLAYER1 220 times
-PLAYER1 has killed you 373 times
+You have killed PLAYER1 252 times
+PLAYER1 has killed you 390 times
+Individual K/D: 0.65
                               CLASS BREAKDOWN                              
 Class         Killed by PLAYER1             Killed PLAYER1              
 Kinetic       21                            12                            
-Blood         103                           49                            
+Blood         119                           78                            
 Arcane        3                             2                             
 Toxic         102                           93                            
 Fire          1                             0                             
 Ancient       0                             0                             
-Ice           136                           63                            
+Ice           137                           66                            
 Wither        6                             0                             
 Storm         1                             0                             
 Hydro         0                             1                             
 
 
                      -----STATS AGAINST PLAYER2-----                     
-You have killed PLAYER2 167 times
-PLAYER2 has killed you 387 times
+You have killed PLAYER2 170 times
+PLAYER2 has killed you 389 times
+Individual K/D: 0.44
                               CLASS BREAKDOWN                              
 Class         Killed by PLAYER2             Killed PLAYER2              
 Kinetic       9                             1                             
-Blood         168                           63                            
+Blood         170                           66                            
 Arcane        0                             0                             
 Toxic         116                           64                            
 Fire          12                            7                             
@@ -75,6 +77,6 @@ Ancient       0                             0
 Ice           70                            31                            
 Wither        0                             0                             
 Storm         0                             0                             
-Hydro         12                            1
+Hydro         12                            1                             
 ...                             
 ```
