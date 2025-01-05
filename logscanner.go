@@ -127,10 +127,19 @@ func isLogfile(file os.DirEntry) (bool, error) {
 	return regexp.MatchString("[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]-[0-9][0-9]?\\.log\\.gz", file.Name())
 }
 
-func runScanner(logDir string) {
-	fmt.Println("Starting scan of " + logDir + " for log files.")
+func runScanner(logDirs []string) {
 	var state ScannerState
 	state.currentClass = KINETIC
+	for _, dir := range logDirs {
+		runScannerOnDir(dir, &state)
+	}
+	rets := sortPlayerRelations(state.kills)
+	// fmt.Println(rets[8].ToString())
+	genReportFile(state, rets)
+}
+
+func runScannerOnDir(logDir string, state *ScannerState) {
+	fmt.Println("Starting scan of " + logDir + " for log files.")
 	
 	dirData, err := os.ReadDir(logDir)
 	if err != nil {
@@ -151,18 +160,19 @@ func runScanner(logDir string) {
 			continue
 		}	
 		// fmt.Printf("Found logfile: %s\n", fullPath)
-		scanLogFile(fullPath, &state)
+		scanLogFile(fullPath, state)
 		state.scannedFile = true
 	}
-	rets := sortPlayerRelations(state.kills)
-	// fmt.Println(rets[8].ToString())
-	genReportFile(state, rets)
 }
 
 func genReportFile(state ScannerState, rets []PlayerRelation) {
-	fmt.Print("Enter the filename under which you would like to save stats (default: stats.txt): ")
 	var loc string
-	fmt.Scanln(&loc)
+	if PRESET_STATS == "" {
+		fmt.Print("Enter the filename under which you would like to save stats (default: stats.txt): ")
+		fmt.Scanln(&loc)
+	} else {
+		loc = PRESET_STATS
+	}
 	if loc == "" {
 		loc = "stats.txt"
 	}

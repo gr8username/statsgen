@@ -25,6 +25,7 @@ func scanLogFile(path string, state *ScannerState) {
 		fmt.Println(err)
 		return
 	}
+	defer reader.Close()
 	usingPattern := regexp.MustCompile("You are using the (Kinetic|Blood|Arcane|Toxic|Fire|Ancient|Ice|Wither|Storm|Hydro) Wizard kit")
 	// In theory, someone could write "You are using the Blood Wizard kit" in chat, and it would screw up the program.
 	// A fix would require parsing the starting portion of the logs across multiple versions of MC. Though this is absolutely incomplete parsing
@@ -33,7 +34,7 @@ func scanLogFile(path string, state *ScannerState) {
 	switchedPattern := regexp.MustCompile("You will respawn as (Kinetic|Blood|Arcane|Toxic|Fire|Ancient|Ice|Wither|Storm|Hydro) Wizard next time!")
 	killedPat := regexp.MustCompile("You killed [A-Za-z0-9_]{3,16}!")
 	killedByPat := regexp.MustCompile("You were killed by [A-Za-z0-9_]{3,16}!")
-	defer reader.Close()
+	
 	// now, we go line by line
 	lineScanner := bufio.NewScanner(reader)
 	lineScanner.Split(bufio.ScanLines)
