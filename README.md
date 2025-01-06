@@ -12,8 +12,8 @@ If you use a custom Minecraft client (such as Lunar), or have set a different Mi
 * If a player changes their username, they will show up twice in the statistics as separate players.
 
 ## Install steps (Linux)
-1. Open a terminal.
-2. [Install golang](https://go.dev/doc/install).
+1. [Install golang](https://go.dev/doc/install).
+2. Open a terminal.
 3. run `git clone https://github.com/gr8username/statsgen/`.
 4. run `cd statsgen`.
 5. run `go build`.
