@@ -14,10 +14,10 @@ If you use a custom Minecraft client (such as Lunar), or have set a different Mi
 ## Install steps (Linux)
 1. [Install golang](https://go.dev/doc/install).
 2. Open a terminal.
-3. run `git clone https://github.com/gr8username/statsgen/`.
-4. run `cd statsgen`.
-5. run `go build`.
-6. run `./statsgen`.
+3. Run `git clone https://github.com/gr8username/statsgen/`.
+4. Run `cd statsgen`.
+5. Run `go build`.
+6. Run `./statsgen`.
 7. To view stats.txt (or the filename you selected) type ```less stats.txt``` Or you can open it with a graphical text editor.
 
 ## Install steps (Windows)

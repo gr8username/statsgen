@@ -15,6 +15,7 @@ func scanLogFile(path string, state *ScannerState) {
 	// come from wizards, as the syntax is very non-unique ("You killed <PlayerName>!")
 	// and the script will confuse it with a Wizards kill. Thus, we check if the log file shows joining wizards or selecting a kit, and in that case, we can have a greater degree of certainty that the kill actually comes from Wizards.
 	// fmt.Println("Opening " + path)
+	nextClass := UNSET
 	file, err := os.Open(path)
 	if err != nil {
 		panic(err)
@@ -44,13 +45,18 @@ func scanLogFile(path string, state *ScannerState) {
 			continue
 		}
 		if usingPattern.MatchString(line) {
+			nextClass = UNSET
 			startedWizGame = true
 			state.currentClass = getClass(line)
 			// fmt.Println("Class started as " + CLASS_NAMES[state.currentClass])
 		}
 		if switchedPattern.MatchString(line) {
 			startedWizGame = true
-			state.currentClass = getClass(line)
+			// state.currentClass = getClass(line)  // we don't set the class immediately
+			// because there's a possibility that the player could get kills between
+			// setting a new class, and dying. In that case, the kills would in reality be with
+			// the player's current class
+			nextClass = getClass(line)
 			// fmt.Println("Class changed to " + CLASS_NAMES[state.currentClass])
 		}
 		if startedWizGame {
@@ -61,6 +67,10 @@ func scanLogFile(path string, state *ScannerState) {
 			if killedByPat.MatchString(line) {
 				name := extractName(line)
 				state.logDeath(name)
+				if nextClass != UNSET {
+					state.currentClass = nextClass
+					nextClass = UNSET
+				}
 			}
 		}
 	}

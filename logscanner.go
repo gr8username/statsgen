@@ -22,6 +22,7 @@ const (
 	WITHER
 	STORM
 	HYDRO
+	UNSET
 )
 
 var CLASS_NAMES = []string{"Kinetic", "Blood", "Arcane", "Toxic", "Fire", "Ancient", "Ice", "Wither", "Storm", "Hydro"}
@@ -201,7 +202,7 @@ func genReportFile(state ScannerState, rets []PlayerRelation) {
 		panic(err)
 	}
 	defer repFile.Close()
-	introductionStr := fmt.Sprintf("Recorded Kills: %d\nRecorded Deaths: %d\nNote, the above numbers are not necessarily the actual amount of kills and deaths on your account.\nThis script can only possibly read data from logs, so if you, for example, play Minecraft on another computer, any logs of Wizards kills will be missing.\nThis file is most likely thousands of lines long, it is recommended to use a text editor with search capability\nAdditionally, the class section of the tables define what class you were using when you died or got a kill, it does not and cannot determine which kit the other player was using.", state.totalKills, state.totalDeaths)
+	introductionStr := fmt.Sprintf("Recorded Kills: %d\nRecorded Deaths: %d\nNote, the above numbers are not necessarily the actual amount of kills and deaths on your account.\nThis script can only possibly read data from logs, so if you, for example, play Minecraft on another computer, any logs of Wizards kills will be missing.\nThis file is most likely thousands of lines long, it is recommended to use a text editor with search capability.\nAdditionally, the class section of the tables define what class you were using when you died or got a kill, it does not and cannot determine which kit the other player was using.", state.totalKills, state.totalDeaths)
 	repFile.WriteString(introductionStr)
 	for i := 0 ; i < len(rets) ; i++ {
 		repFile.WriteString(rets[i].ToString())
