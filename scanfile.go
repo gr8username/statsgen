@@ -44,6 +44,9 @@ func scanLogFile(path string, state *ScannerState) {
 		if !isChatLine(line) {
 			continue
 		}
+		// then, we strip out color codings.
+		replacementReg := regexp.MustCompile("§[A-Za-z0-9_]")
+		line = replacementReg.ReplaceAllString(line, "")
 		if usingPattern.MatchString(line) {
 			nextClass = UNSET
 			startedWizGame = true
@@ -75,6 +78,8 @@ func scanLogFile(path string, state *ScannerState) {
 		}
 	}
 }
+
+
 
 func extractName(line string) string {
 	// for You killed and You were killed by
